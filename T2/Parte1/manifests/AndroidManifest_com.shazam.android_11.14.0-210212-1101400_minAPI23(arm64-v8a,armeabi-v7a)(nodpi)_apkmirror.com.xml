@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="30" android:compileSdkVersionCodename="11" android:installLocation="auto" package="com.shazam.android" platformBuildVersionCode="30" platformBuildVersionName="11">
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="https"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+        <package android:name="com.spotify.music"/>
+        <package android:name="com.apple.android.music"/>
+        <package android:name="com.google.android.apps.youtube.music"/>
+        <package android:name="com.google.android.youtube"/>
+        <package android:name="com.instagram.android"/>
+        <package android:name="com.snapchat.android"/>
+    </queries>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false"/>
+    <uses-feature android:name="android.hardware.location" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.network" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <permission android:name="com.shazam.android.permission.SHARE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.shazam.android.permission.SHARE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission-sdk-23 android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:backupAgent="com.shazam.backup.BackerUpper" android:extractNativeLibs="false" android:hardwareAccelerated="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:name="com.shazam.android.ShazamApplication" android:networkSecurityConfig="@xml/network_security_config" android:restoreAnyVersion="false" android:supportsRtl="@bool/supports_rtl" android:theme="@style/Theme.Shazam.Blue.WindowPreview">
+        <receiver android:name="com.shazam.android.receiver.AppUpgradeReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="@bool/is_firebase_crashlytics_enabled"/>
+        <meta-data android:name="firebase_performance_collection_enabled" android:value="false"/>
+        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_api_key_shazam"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="android.app.default_searchable" android:value="com.shazam.android.TagTrackDetail"/>
+        <meta-data android:name="com.google.android.backup.api_key" android:value="@string/backup_api_key"/>
+        <meta-data android:name="com.facebook.sdk.AutoInitEnabled" android:value="false"/>
+        <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled" android:value="false"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity android:exported="true" android:launchMode="singleTask" android:name="com.shazam.android.activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:path="/" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/search" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/search" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/search" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/search" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/launchurl" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/launchurl" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/launchurl" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/launchurl" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/starttagging" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/starttagging" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/starttagging" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/starttagging" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/startautotagging" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/startautotagging" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/startautotagging" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/startautotagging" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:path="@string/path_validate_email_web" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/discover/track/..*" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/discover/track/..*" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/discover/track/..*" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/discover/track/..*" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/artist/..*" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/artist/..*" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/artist/..*" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/artist/..*" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/track/..*" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/track/..*" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/track/..*" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/track/..*" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/myshazam" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/myshazam" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/myshazam" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/myshazam" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/charts" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/charts" android:scheme="http"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/charts" android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:pathPattern="/..*/charts" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:path="/spotifyconnect"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:path="/verify/artist-link"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"/>
+                <data android:host="@string/host_shazam" android:path="/channel/sony"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="track" android:pathPattern="/..*" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="home" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="listen" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="search" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="importshazams" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="playvideos" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="starttagging" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="myshazam" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="spotifyconnect" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="artist" android:pathPattern="/..*" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/host_click_validate_email" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.shazam.android.intent.actions.START_TAGGING"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.shazam.android.intent.actions.START_AUTO_TAGGING"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="startautotagging" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="launchurl" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="validation" android:pathPattern="/artist" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="playplaylist" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="appleauthcallback" android:scheme="@string/scheme_shazam_external"/>
+            </intent-filter>
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
+        </activity>
+        <activity-alias android:name="com.shazam.android.activities.Splash" android:targetActivity="com.shazam.android.activities.SplashActivity"/>
+        <activity android:clearTaskOnLaunch="true" android:exported="false" android:launchMode="singleTask" android:name="com.shazam.android.activities.MainActivity" android:theme="@style/Theme.Shazam.Light.MainActivity" android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="home" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="charts" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="myshazam" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="starttagging" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="startautotagging" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="fontScale|keyboard|keyboardHidden|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:exported="false" android:label="@string/shazam_is_setting_up" android:launchMode="singleTask" android:name="com.shazam.android.activities.ConfigurationActivity" android:theme="@style/Theme.Shazam.Blue.Home">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="configuration" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="fontScale|keyboard|keyboardHidden|locale|mcc|mnc|navigation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:exported="false" android:name="com.shazam.android.activities.account.SignUpActivity" android:theme="@style/Theme.Shazam.White.SignUp">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="sign_up" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.account.ImportShazamsActivity" android:theme="@style/Theme.Shazam.White.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="importshazams" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.ReportWrongSongConfirmationDialogActivity" android:theme="@style/Theme.Shazam.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="reportwrongsongconfirmationdialog" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize" android:exported="false" android:name="com.shazam.android.activities.WebActivity" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="web" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:label="" android:name="com.shazam.android.activities.tagging.TaggingActivity" android:theme="@style/Theme.Shazam.Blue.Tagging"/>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.streaming.spotify.SpotifyAuthFlowActivity" android:parentActivityName="com.shazam.android.activities.MainActivity" android:theme="@style/Theme.Shazam.Blue.TranslucentStatus">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="spotifyconnect" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize" android:exported="false" android:name="com.shazam.android.activities.webflow.AppleWebFlowActivity" android:theme="@style/Theme.Shazam.White">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="applewebflow" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.webflow.AppleWebFlowHandshakeActivity" android:theme="@style/Theme.Shazam.White">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="applewebflowhandshake" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.streaming.applemusic.AppleMusicAuthFlowActivity" android:theme="@style/Theme.Shazam.White">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="applemusicconnect" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="applemusicfeaturedownloader" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.applemusicupsell.AppleWebFlowVideoLandingPageActivity" android:theme="@style/Theme.Shazam.Dark.VideoLandingPage">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="applewebflowvideolanding" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.applemusicupsell.AppleWebFlowBottomSheetActivity" android:theme="@style/Theme.Shazam.Light.BottomSheetActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="applewebflowbottomsheet" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.streaming.StreamingProviderLogInSuccessDialogActivity" android:theme="@style/Theme.Shazam.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="streaming_logged_in" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:launchMode="singleTop" android:name="com.shazam.android.activities.account.EmailSignupActivity" android:theme="@style/Theme.Shazam.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="email_signup" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.account.CheckEmailActivity" android:parentActivityName="com.shazam.android.activities.account.EmailSignupActivity" android:theme="@style/Theme.Shazam.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="check_email" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/song_detected" android:name="com.shazam.android.activities.details.MusicDetailsInterstitialActivity" android:theme="@style/Theme.Shazam.Dark.TranslucentStatus"/>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.details.MusicDetailsActivity" android:parentActivityName="com.shazam.android.activities.MainActivity" android:theme="@style/Theme.Shazam.Dark.MusicDetails">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="track" android:pathPattern="/..*" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.shazam.android.activities.MainActivity"/>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.details.MusicDetailsActionDispatchingActivity" android:noHistory="true" android:theme="@style/Theme.Shazam.Invisible">
+            <intent-filter>
+                <action android:name="android.intent.action.INSERT"/>
+                <action android:name="android.intent.action.DELETE"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.details.MetadataActivity" android:parentActivityName="com.shazam.android.activities.details.MusicDetailsActivity" android:theme="@style/Theme.Shazam.Dark.TranslucentStatus.TranslucentToolbar.NoContentPadding">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="metadata" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.lyrics.LyricsActivity" android:parentActivityName="com.shazam.android.activities.details.MusicDetailsActivity" android:theme="@style/Theme.Shazam.Dark.TranslucentStatus.TranslucentToolbar.NoContentPadding">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="lyrics" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.streaming.StreamingPlaylistsActivity" android:theme="@style/Theme.Shazam.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="streaming_playlists" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.sheet.TrackHeaderListBottomSheetActivity" android:theme="@style/Theme.Shazam.Light.BottomSheetActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="header_bottom_sheet" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.sheet.NoHeaderListBottomSheetActivity" android:theme="@style/Theme.Shazam.Light.BottomSheetActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="no_header_bottom_sheet" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.logout.LogoutDialogActivity" android:theme="@style/Theme.Shazam.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="logout_dialog" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.search.SearchActivity" android:theme="@style/Theme.Shazam.White" android:windowSoftInputMode="adjustResize|stateVisible">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="search" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:name="com.shazam.android.activities.search.SearchMoreResultsActivity" android:theme="@style/Theme.Shazam.White">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="search_more_results" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:finishOnTaskLaunch="true" android:label="@string/settings" android:name="com.shazam.android.activities.SettingsActivity" android:parentActivityName="com.shazam.android.activities.MainActivity" android:theme="@style/Theme.Shazam.Light.Settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.NOTIFICATION_PREFERENCES"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="settings" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.artist.ArtistActivity" android:theme="@style/Theme.Shazam.Dark.Artist">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="artist" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.android.activities.tagging.NoMatchActivity" android:theme="@style/Theme.Shazam.White.BluePrimaryText.NoMatch"/>
+        <activity android:exported="false" android:name="com.shazam.android.activities.TrackListActivity" android:theme="@style/Theme.Shazam.White">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="chart" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="myshazam_history" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="myshazam_history_auto_session" android:scheme="@string/scheme_shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.shazam.android.activities.PermissionGrantingActivity" android:theme="@style/Theme.Shazam.Invisible.PermissionGranting"/>
+        <activity android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.shazam.android.activities.AutoShazamQuickSettingsPermissionActivity" android:theme="@style/Theme.Shazam.Invisible"/>
+        <activity android:exported="false" android:launchMode="singleInstance" android:name="com.shazam.android.activities.missingsplits.MissingSplitsActivity" android:process=":missing_splits_activity" android:stateNotNeeded="true"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:label="@string/app_name" android:name="com.facebook.FacebookActivity" android:theme="@style/Theme.Shazam.Dialog"/>
+        <activity android:name="com.spotify.sdk.android.auth.LoginActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:excludeFromRecents="true" android:exported="true" android:icon="@drawable/ic_instagram" android:label="Instagram stories" android:name="com.shazam.android.activities.share.InstagramStoriesShareActivity" android:permission="com.shazam.android.permission.SHARE" android:theme="@style/Theme.Shazam.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:icon="@drawable/ic_snapchat" android:label="Snapchat" android:name="com.shazam.android.activities.share.SnapchatStoriesShareActivity" android:permission="com.shazam.android.permission.SHARE" android:theme="@style/Theme.Shazam.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
+        <provider android:authorities="com.shazam.android.shareprovider" android:exported="false" android:grantUriPermissions="true" android:name="com.shazam.android.provider.ShazamFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_provider_paths"/>
+        </provider>
+        <receiver android:name="com.shazam.android.appwidget.WidgetProvider">
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/appwidget"/>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.shazam.android.receiver.ShareProviderSelectedBroadcastReceiver"/>
+        <receiver android:name="com.shazam.android.receiver.LocaleChangedBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.shazam.android.receiver.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.shazam.android.service.tagsync.TagSyncIntentService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:foregroundServiceType="microphone" android:name="com.shazam.android.service.tagging.AutoTaggingService"/>
+        <service android:name="com.shazam.android.service.wearable.ShazamWearableService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED"/>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
+                <data android:scheme="wear"/>
+            </intent-filter>
+        </service>
+        <service android:icon="@drawable/ic_auto_shazam" android:label="@string/auto_shazam" android:name="com.shazam.android.service.tagging.AutoTaggingTileService" android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <activity android:exported="false" android:label="@string/artists" android:launchMode="singleTop" android:name="com.shazam.library.android.activities.LibraryArtistsActivity" android:theme="@style/Theme.Shazam.White">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="library_artists" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:label="@string/playlists_for_you" android:launchMode="singleTop" android:name="com.shazam.library.android.activities.LibraryPlaylistsActivity" android:theme="@style/Theme.Shazam.White">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="library_playlists" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.library.android.activities.TagOverlayActivity" android:theme="@style/Theme.Shazam.UnreadTagsOverlay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="unread_rerun_matches" android:scheme="shazam_activity"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="unread_offline_matches" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:launchMode="singleTop" android:name="com.shazam.player.android.activities.MusicPlayerActivity" android:theme="@style/Theme.Shazam.Dark.MusicPlayer">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="player" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <service android:enabled="true" android:exported="false" android:name="com.shazam.player.android.service.MusicPlayerService">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.shazam.player.android.ACTION_PLAY"/>
+                <action android:name="com.shazam.player.android.ACTION_PAUSE"/>
+                <action android:name="com.shazam.player.android.ACTION_STOP"/>
+                <action android:name="com.shazam.player.android.ACTION_SKIP_TO_PREVIOUS"/>
+                <action android:name="com.shazam.player.android.ACTION_SKIP_TO_NEXT"/>
+            </intent-filter>
+        </service>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.shazam.video.android.activities.VideoPlayerActivity" android:theme="@style/Theme.Shazam.Dark.VideoPlayer">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="videoplayer" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.shazam.popup.android.activities.NotificationShazamSetupActivity" android:theme="@style/Theme.Shazam.Invisible">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="notification_shazam_setup" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.shazam.popup.android.receiver.NotificationsStateChangedBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.app.action.APP_BLOCK_STATE_CHANGED"/>
+                <action android:name="android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED"/>
+                <action android:name="android.app.action.NOTIFICATION_CHANNEL_GROUP_BLOCK_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:foregroundServiceType="microphone" android:name="com.shazam.popup.android.service.NotificationShazamService"/>
+        <service android:enabled="false" android:icon="@drawable/ic_notification_shazam" android:label="@string/shazam" android:name="com.shazam.popup.android.service.FloatingShazamTileService" android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <activity android:exported="false" android:name="com.shazam.auth.android.activities.LoginActivity" android:theme="@style/Theme.Shazam.White.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="auth" android:scheme="shazam_activity"/>
+            </intent-filter>
+        </activity>
+        <receiver android:exported="false" android:name="com.shazam.android.analytics.receiver.NotificationActionClickedAnalyticsBroadcastReceiver"/>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.perf.FirebasePerfRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.dynamiclinks.internal.FirebaseDynamicLinkRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <activity android:exported="false" android:label="" android:name="com.firebase.ui.auth.KickoffActivity" android:theme="@style/FirebaseUI.Transparent"/>
+        <activity android:exported="false" android:label="" android:name="com.firebase.ui.auth.ui.idp.SingleSignInActivity" android:theme="@style/FirebaseUI.Transparent"/>
+        <activity android:exported="false" android:label="" android:name="com.firebase.ui.auth.ui.credentials.CredentialSaveActivity" android:theme="@style/FirebaseUI.Transparent"/>
+        <activity android:exported="false" android:label="@string/fui_title_recover_password_activity" android:name="com.firebase.ui.auth.ui.email.RecoverPasswordActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="@string/fui_sign_in_default" android:name="com.firebase.ui.auth.ui.email.EmailActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="@string/fui_sign_in_with_phone_number" android:name="com.firebase.ui.auth.ui.phone.PhoneActivity" android:windowSoftInputMode="stateAlwaysVisible|adjustResize"/>
+        <activity android:exported="false" android:label="@string/fui_title_welcome_back_idp_prompt" android:name="com.firebase.ui.auth.ui.idp.WelcomeBackIdpPrompt" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="@string/fui_title_welcome_back_password_prompt" android:name="com.firebase.ui.auth.ui.email.WelcomeBackPasswordPrompt" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="@string/fui_title_welcome_back_password_prompt" android:name="com.firebase.ui.auth.ui.email.WelcomeBackEmailLinkPrompt" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="" android:name="com.firebase.ui.auth.ui.email.EmailLinkCatcherActivity" android:theme="@style/FirebaseUI.Transparent" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="@string/fui_sign_in_default" android:name="com.firebase.ui.auth.ui.email.EmailLinkErrorRecoveryActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="@string/fui_default_toolbar_title" android:name="com.firebase.ui.auth.ui.idp.AuthMethodPickerActivity"/>
+        <activity android:exported="true" android:name="com.facebook.CustomTabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="@string/facebook_login_protocol_scheme"/>
+            </intent-filter>
+        </activity>
+        <provider android:authorities="com.shazam.android.authuiinitprovider" android:exported="false" android:initOrder="90" android:name="com.firebase.ui.auth.data.client.AuthUiInitProvider"/>
+        <activity android:name="com.facebook.CustomTabMainActivity"/>
+        <provider android:authorities="com.shazam.android.firebaseperfprovider" android:exported="false" android:initOrder="101" android:name="com.google.firebase.perf.provider.FirebasePerfProvider"/>
+        <provider android:authorities="com.shazam.android.lifecycle-process" android:exported="false" android:multiprocess="true" android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"/>
+        <activity android:enabled="false" android:exported="false" android:launchMode="singleInstance" android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity" android:process=":playcore_missing_splits_activity" android:stateNotNeeded="true"/>
+        <activity android:enabled="false" android:exported="false" android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity" android:stateNotNeeded="true" android:theme="@style/Theme.PlayCore.Transparent"/>
+        <service android:enabled="false" android:exported="true" android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"/>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery">
+            <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
+        </service>
+        <activity android:name="com.apple.android.sdk.authentication.StartAuthenticationActivity" android:screenOrientation="portrait" android:theme="@style/MusicKitAuthTheme"/>
+        <activity android:launchMode="singleTask" android:name="com.apple.android.sdk.authentication.SDKUriHandlerActivity" android:screenOrientation="portrait" android:theme="@style/MusicKitAuthTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="com.shazam.android" android:pathPattern="/authenticateresult.*" android:scheme="musicsdk"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTask" android:name="com.google.firebase.auth.internal.GenericIdpActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="firebase.auth" android:path="/" android:scheme="genericidp"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTask" android:name="com.google.firebase.auth.internal.RecaptchaActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="firebase.auth" android:path="/" android:scheme="recaptcha"/>
+            </intent-filter>
+        </activity>
+        <service android:enabled="true" android:exported="false" android:name="com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService">
+            <intent-filter>
+                <action android:name="com.google.firebase.auth.api.gms.service.START"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <provider android:authorities="com.shazam.android.firebaseinitprovider" android:directBootAware="true" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+        <receiver android:exported="false" android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.facebook.CampaignTrackingReceiver" android:permission="android.permission.INSTALL_PACKAGES">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" android:visibleToInstantApps="true"/>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_foreground_service_default" android:exported="false" android:name="androidx.work.impl.foreground.SystemForegroundService"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="false" android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"/>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW"/>
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver" android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"/>
+        <service android:directBootAware="true" android:exported="false" android:name="androidx.room.MultiInstanceInvalidationService"/>
+        <service android:exported="false" android:label="Reporting Service" android:name="com.apple.android.music.playback.reporting.ReportingService"/>
+        <service android:exported="false" android:label="Reporting Service" android:name="com.apple.android.music.playback.reporting.ReportingServiceApi26" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <meta-data android:name="com.android.dynamic.apk.fused.modules" android:value="base,musickitplayback"/>
+        <meta-data android:name="com.android.stamp.source" android:value="https://play.google.com/store"/>
+        <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_STANDALONE_APK"/>
+        <meta-data android:name="com.android.vending.splits" android:resource="@2113994752"/>
+        <meta-data android:name="com.android.vending.derived.apk.id" android:value="1"/>
+    </application>
+</manifest>

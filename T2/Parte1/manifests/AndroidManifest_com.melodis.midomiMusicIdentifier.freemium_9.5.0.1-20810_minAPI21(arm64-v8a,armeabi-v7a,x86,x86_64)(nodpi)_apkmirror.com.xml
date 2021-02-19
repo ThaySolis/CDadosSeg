@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="29" android:compileSdkVersionCodename="10" android:installLocation="auto" package="com.melodis.midomiMusicIdentifier.freemium" platformBuildVersionCode="29" platformBuildVersionName="10">
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.network" android:required="false"/>
+    <uses-feature android:name="android.hardware.faketouch" android:required="false"/>
+    <uses-feature android:name="android.hardware.location" android:required="false"/>
+    <uses-feature android:name="android.hardware.wifi" android:required="false"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <application android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:icon="@mipmap/app_icon" android:label="@string/app_name_freemium" android:largeHeap="true" android:name="com.soundhound.android.appcommon.application.SoundHoundApplication" android:networkSecurityConfig="@xml/network_security_config" android:resizeableActivity="false" android:roundIcon="@mipmap/app_icon" android:supportsRtl="true" android:theme="@style/SoundHoundTheme">
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_ciiOwC2YPVttiSEUlgd8hamlsufLSM81"/>
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_afpRED11HNyEoHwGnoFlgfmhDynRL6lc"/>
+        <activity android:name="com.soundhound.android.feature.splash.SplashScreenActivity" android:screenOrientation="portrait" android:theme="@style/SoundHoundSplashScreenTheme"/>
+        <activity-alias android:label="@string/app_name_freemium" android:name="com.soundhound.android.appcommon.activity.SplashScreenActivity" android:screenOrientation="portrait" android:targetActivity="com.soundhound.android.feature.splash.SplashScreenActivity" android:theme="@style/SoundHoundSplashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.melodis.midomiMusicIdentifier.freemium.LAUNCH"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="ampea1268638c4c83ea7ca818f-7cc94b14-d9a2-11e4-3058-004a77f8b47f"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="amp3335904327062dc9ea35087-47b59e74-eac9-11e4-312e-004a77f8b47f"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="ampe3133faed30e3c6c40d0758-16030102-eae0-11e4-b259-009c5fda0a25"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity-alias>
+        <activity android:label="@string/app_name_freemium" android:name="com.soundhound.android.appcommon.activity.SoundHound" android:windowSoftInputMode="adjustPan"/>
+        <activity-alias android:enabled="true" android:exported="true" android:icon="@mipmap/app_icon" android:label="@string/app_name_freemium" android:name="com.melodis.midomiMusicIdentifier.view.SoundHound" android:targetActivity="com.soundhound.android.appcommon.activity.SoundHound"/>
+        <activity android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.soundhound.android.appcommon.activity.URLRouter" android:noHistory="true" android:screenOrientation="portrait" android:theme="@style/SoundHoundSplashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="" android:scheme="soundhound"/>
+                <data android:host="auth" android:scheme="soundhound"/>
+                <data android:host="soundhound.com" android:scheme="soundhound"/>
+                <data android:host="" android:scheme="soundhound_freemium"/>
+                <data android:host="" android:scheme="soundhound-free"/>
+                <data android:scheme="@string/localytics_app_key_test_mode"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:name="com.soundhound.android.appcommon.activity.WidgetRouter" android:noHistory="true" android:screenOrientation="portrait"/>
+        <activity android:excludeFromRecents="true" android:name="com.soundhound.android.appcommon.activity.WidgetPermissionActivity" android:screenOrientation="portrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <receiver android:label="@string/basic_widget_name" android:name="com.soundhound.android.appcommon.widget.BasicWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_basic"/>
+        </receiver>
+        <service android:name="com.soundhound.android.appcommon.widget.WidgetSearchIntentGetterService"/>
+        <service android:name="com.soundhound.android.appcommon.widget.WidgetUpdateService"/>
+        <activity android:exported="true" android:icon="@drawable/ic_id_now" android:label="@string/app_name_freemium" android:name="com.soundhound.android.appcommon.activity.SoundHoundIdNow"/>
+        <activity android:excludeFromRecents="true" android:icon="@drawable/ic_id_now" android:label="@string/app_name_freemium" android:name="com.soundhound.android.appcommon.activity.IdNowRouter" android:noHistory="true" android:taskAffinity="" android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.soundhound.android.ID_NOW_EXTERNAL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:icon="@mipmap/app_icon" android:label="@string/soundhound_id_now" android:name="com.soundhound.android.appcommon.activity.CreateShortcutIdNow" android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.soundhound.android.appcommon.receiver.FileCopyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.melodis.midomiMusicIdentifier.freemium.FILE_COPY"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.soundhound.android.appcommon.receiver.DatabaseCopyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.melodis.midomiMusicIdentifier.freemium.DATABASE_COPY"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.soundhound.android.appcommon.receiver.UserSettingsBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.melodis.midomiMusicIdentifier.freemium.USER_SETTINGS"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="@string/google_maps_api_key_v2"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_application_id"/>
+        <meta-data android:name="LOCALYTICS_NOTIFICATION_ICON" android:value="@drawable/ic_notifications_logo_24dp"/>
+        <activity android:excludeFromRecents="true" android:name="com.soundhound.android.appcommon.activity.NewTaskLauncher" android:screenOrientation="portrait" android:taskAffinity=""/>
+        <activity android:name="com.soundhound.android.appcommon.activity.ViewDatabaseError" android:screenOrientation="portrait"/>
+        <activity android:label="@string/email_favorites" android:name="com.soundhound.android.feature.appsettings.EmailBookmarksActivity" android:screenOrientation="portrait"/>
+        <activity android:label="@string/buy" android:name="com.soundhound.android.feature.buy.BuyActivity" android:screenOrientation="portrait" android:theme="@style/SoundHoundTheme.NoActionBar.Transparent.NoAnimation.NoStatusBar"/>
+        <activity android:name="com.soundhound.android.feature.soundbites.SoundbitesActivity" android:screenOrientation="portrait" android:theme="@style/SoundbiteTheme"/>
+        <activity android:label="" android:name="com.soundhound.android.feature.dev.ViewHoundResponseDebug"/>
+        <activity android:label="" android:name="com.soundhound.android.feature.dev.ViewOMRResponseDebug"/>
+        <activity android:label="" android:name="com.soundhound.android.feature.dev.ViewHoundPageXMLResponseDebug"/>
+        <activity android:label="" android:name="com.soundhound.android.feature.dev.ViewHoundRequestJSONDebug"/>
+        <activity android:label="@string/twitter" android:name="com.soundhound.android.feature.share.ViewTwitterAuth" android:windowSoftInputMode="adjustPan"/>
+        <activity android:label="User Storage Config" android:name="com.soundhound.android.feature.useraccount.dev.UserStorageConfigForm"/>
+        <activity android:label="Player Dev Settings" android:name="com.soundhound.android.feature.dev.ViewPlayerDevSettings"/>
+        <activity android:label="Player Dev Settings" android:name="com.soundhound.android.feature.dev.DevPlayerServiceActivity"/>
+        <activity android:label="@string/review" android:name="com.soundhound.android.feature.album.AlbumReviewActivity"/>
+        <activity android:label="@string/benchmark" android:name="com.soundhound.android.feature.dev.ViewBenchmark"/>
+        <activity android:label="@string/music_store" android:name="com.soundhound.android.feature.appsettings.musicstore.MusicStoresActivity"/>
+        <activity android:label="Config" android:name="com.soundhound.android.feature.appsettings.ViewConfig"/>
+        <activity android:name="com.soundhound.android.feature.share.ViewShareAuthenticate" android:theme="@style/SoundHoundTheme.NoActionBar.Transparent"/>
+        <activity android:hardwareAccelerated="false" android:label="@string/app_name_freemium" android:name="com.soundhound.android.appcommon.activity.ViewInternalWebview"/>
+        <activity android:label="@string/share" android:name="com.soundhound.android.feature.share.ViewShare" android:theme="@style/ShareTheme"/>
+        <activity android:label="@string/biography" android:name="com.soundhound.android.feature.artist.ArtistBiographyActivity"/>
+        <activity android:label="@string/sign_up" android:name="com.soundhound.android.feature.useraccount.AccountSignUpActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/map" android:name="com.soundhound.android.feature.maps.ViewMap"/>
+        <activity android:label="User Agent Config" android:name="com.soundhound.android.feature.dev.ViewConfigUserAgent"/>
+        <activity android:label="@string/upgrade" android:name="com.soundhound.android.appcommon.activity.ViewFreemiumStatus"/>
+        <activity android:label="@string/register" android:name="com.soundhound.android.feature.useraccount.RegistrationAccountScreen" android:screenOrientation="portrait"/>
+        <activity android:name="com.soundhound.android.feature.dev.SharedPreferencesViewerActivity"/>
+        <activity android:label="" android:name="com.soundhound.android.appcommon.activity.shared.PageHostActivity" android:theme="@style/SoundHoundTheme.Overlay" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:label="" android:name="com.soundhound.android.appcommon.activity.pagehosts.VideoPlayerPageActivity" android:theme="@style/SoundHoundTheme.Overlay"/>
+        <activity android:label="" android:name="com.soundhound.android.appcommon.activity.pagehosts.NoActionBarNoNavBarPageHostActivity" android:theme="@style/SoundHoundTheme.NoActionBar.NoAnimation"/>
+        <activity android:label="" android:name="com.soundhound.android.appcommon.activity.pagehosts.OMRActivity" android:theme="@style/SoundHoundTheme.NoActionBar.Transparent.NoAnimation"/>
+        <activity android:label="" android:name="com.soundhound.android.appcommon.activity.PlayerPageActivity" android:theme="@style/SoundHoundTheme.Overlay"/>
+        <activity android:label="@string/search_results" android:name="com.soundhound.android.appcommon.activity.ViewMusicSearchResults" android:windowSoftInputMode="adjustPan"/>
+        <activity android:label="@string/search_results" android:name="com.soundhound.android.appcommon.activity.ViewSaySearchResults" android:windowSoftInputMode="adjustPan"/>
+        <activity android:label="@string/search_results" android:name="com.soundhound.android.appcommon.activity.ViewAudioSearchResultListItems" android:windowSoftInputMode="adjustPan"/>
+        <activity android:label="@string/settings" android:name="com.soundhound.android.feature.settings.SettingsActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/settings_privacy_and_legal" android:name="com.soundhound.android.feature.settings.help.PrivacyLegalActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/linked_accounts" android:name="com.soundhound.android.feature.settings.linkedaccounts.LinkedAccountsActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/profile" android:name="com.soundhound.android.feature.settings.accounts.UserProfileActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/change_password" android:name="com.soundhound.android.feature.settings.accounts.ChangePasswordActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/help_center" android:name="com.soundhound.android.feature.settings.help.HelpCenterActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/contact_us" android:name="com.soundhound.android.feature.settings.help.feedback.ContactUsActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/forgot_password" android:name="com.soundhound.android.feature.useraccount.ForgotPasswordActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:name="com.soundhound.android.common.activity.InternalWebViewActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/sign_up_login" android:name="com.soundhound.android.feature.useraccount.AccountLogInActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:label="@string/pending_history" android:name="com.soundhound.android.feature.settings.pending.PendingHistoryActivity" android:screenOrientation="sensorPortrait" android:theme="@style/SoundHoundTheme.NoActionBar"/>
+        <activity android:name="com.spotify.sdk.android.authentication.LoginActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.facebook.ads.InterstitialAdActivity"/>
+        <activity android:enabled="@bool/ll_push_tracking_activity_enabled" android:exported="false" android:name="com.localytics.android.PushTrackingActivity"/>
+        <activity android:name="com.soundhound.android.feature.streamconnect.v2.spotify.auth.SpotifyAuthActivity" android:theme="@style/SoundHoundTheme.NoActionBar.Transparent.NoAnimation"/>
+        <service android:name="com.soundhound.android.appcommon.logger.LoggerService"/>
+        <service android:name="com.soundhound.android.appcommon.search.SoundHoundMusicSearchService"/>
+        <service android:enabled="true" android:exported="true" android:name="com.soundhound.android.feature.player.service.ShPlayerService">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.soundhound.android.appcommon.houndify.FireAndForgetIntentService"/>
+        <receiver android:name="com.soundhound.android.appcommon.receiver.LocaleChangeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.soundhound.android.feature.share.ShareBroadcastReceiver"/>
+        <uses-library android:name="com.google.android.maps" android:required="false"/>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <meta-data android:name="com.snapchat.kit.sdk.clientId" android:value="@string/snapchat_client_id"/>
+        <meta-data android:name="com.google.android.gms.ads.AD_MANAGER_APP" android:value="true"/>
+        <receiver android:name="androidx.media.session.MediaButtonReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+        </receiver>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity android:name="com.soundhound.android.adverts.activity.ViewFullScreenWebviewAd"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:style/Theme.Translucent"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.mopub.mobileads.MoPubActivity" android:theme="@style/MoPubFullscreenTheme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.mopub.mobileads.MraidActivity"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.mopub.common.MoPubBrowser" android:theme="@style/MoPubFullscreenTheme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.mopub.mobileads.MraidVideoPlayerActivity" android:theme="@style/MoPubFullscreenTheme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.mopub.mobileads.RewardedMraidActivity"/>
+        <activity android:launchMode="singleTask" android:name="com.soundhound.android.components.notification.ActivityPushMessageHandler" android:screenOrientation="portrait"/>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.ktx.FirebaseCrashlyticsKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.ktx.FirebaseAnalyticsKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.messaging.FirebaseMessagingService">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:name="com.facebook.FacebookActivity" android:theme="@style/com_facebook_activity_theme"/>
+        <activity android:name="com.facebook.CustomTabMainActivity"/>
+        <activity android:exported="true" android:name="com.facebook.CustomTabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="cct.com.melodis.midomiMusicIdentifier.freemium" android:scheme="fbconnect"/>
+            </intent-filter>
+        </activity>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.FacebookInitProvider" android:exported="false" android:name="com.facebook.internal.FacebookInitProvider"/>
+        <receiver android:exported="false" android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.mopub.mobileads.MoPubFullscreenActivity" android:theme="@style/MoPubFullscreenTheme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.mopub.common.privacy.ConsentDialogActivity" android:theme="@style/MoPubFullscreenTheme"/>
+        <receiver android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.firebaseinitprovider" android:directBootAware="true" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+        <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.mobileadsinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.android.gms.ads.MobileAdsInitProvider"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:exported="false" android:name="com.facebook.ads.AudienceNetworkActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.AudienceNetworkContentProvider" android:exported="false" android:name="com.facebook.ads.AudienceNetworkContentProvider"/>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.SnapKitInitProvider" android:exported="false" android:name="com.snapchat.kit.sdk.SnapKitInitProvider"/>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.lifecycle-process" android:exported="false" android:multiprocess="true" android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"/>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery">
+            <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
+        </service>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"/>
+        <provider android:authorities="com.melodis.midomiMusicIdentifier.freemium.workmanager-init" android:directBootAware="false" android:exported="false" android:multiprocess="true" android:name="androidx.work.impl.WorkManagerInitializer"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_foreground_service_default" android:exported="false" android:name="androidx.work.impl.foreground.SystemForegroundService"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="false" android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"/>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW"/>
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies"/>
+            </intent-filter>
+        </receiver>
+        <service android:directBootAware="true" android:exported="false" android:name="androidx.room.MultiInstanceInvalidationService"/>
+        <activity android:name="com.hound.android.fd.HoundifyVoiceSearchActivity" android:theme="@style/houndify_Houndify"/>
+        <meta-data android:name="LOCALYTICS_APP_KEY" android:value="@string/ll_app_key"/>
+        <receiver android:enabled="@bool/ll_referral_receiver_enabled" android:exported="true" android:name="com.localytics.android.ReferralReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="@bool/ll_fcm_push_services_enabled" android:exported="true" android:name="com.localytics.android.FirebaseTokenService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:enabled="@bool/ll_fcm_push_services_enabled" android:exported="true" android:name="com.localytics.android.FirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <receiver android:enabled="@bool/ll_places_enabled" android:name="com.localytics.android.LocationUpdateReceiver"/>
+        <receiver android:enabled="@bool/ll_places_enabled" android:name="com.localytics.android.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="@bool/ll_places_background_service_enabled" android:exported="true" android:name="com.localytics.android.BackgroundService" android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <activity android:enabled="false" android:exported="false" android:launchMode="singleInstance" android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity" android:process=":playcore_missing_splits_activity" android:stateNotNeeded="true"/>
+        <activity android:enabled="false" android:exported="false" android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity" android:process=":playcore_dialog_wrapper_activity" android:stateNotNeeded="true" android:theme="@style/Theme.PlayCore.Transparent"/>
+        <meta-data android:name="com.android.dynamic.apk.fused.modules" android:value="base"/>
+        <meta-data android:name="com.android.stamp.source" android:value="https://play.google.com/store"/>
+        <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_STANDALONE_APK"/>
+        <meta-data android:name="com.android.vending.splits" android:resource="@xml/splits0"/>
+        <meta-data android:name="com.android.vending.derived.apk.id" android:value="1"/>
+    </application>
+</manifest>

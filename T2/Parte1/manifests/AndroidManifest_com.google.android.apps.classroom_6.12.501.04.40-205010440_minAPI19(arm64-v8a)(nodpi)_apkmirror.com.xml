@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="30" android:compileSdkVersionCodename="11" package="com.google.android.apps.classroom" platformBuildVersionCode="30" platformBuildVersionName="11">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:maxSdkVersion="22" android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:maxSdkVersion="19" android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <permission android:name="com.google.android.apps.classroom.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.google.android.apps.classroom.permission.C2D_MESSAGE"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <queries>
+        <package android:name="com.google.android.apps.meetings"/>
+        <package android:name="com.google.android.gm"/>
+        <package android:name="com.google.android.apps.docs"/>
+    </queries>
+    <application android:allowBackup="false" android:debuggable="false" android:icon="@mipmap/adaptiveproduct_classroom" android:label="@string/app_name" android:name="com.google.android.apps.classroom.application.LunchboxApplication" android:supportsRtl="true" android:theme="@style/DefaultTheme" android:usesCleartextTraffic="false">
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity android:exported="true" android:name="com.google.android.apps.classroom.application.launcher.LauncherActivity" android:theme="@style/Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <service android:exported="false" android:isolatedProcess="true" android:name="com.google.android.apps.viewer.pdflib.PdfDocumentService"/>
+        <provider android:authorities="com.google.android.apps.classroom.workmanager-init" android:directBootAware="false" android:enabled="false" android:exported="false" android:multiprocess="true" android:name="androidx.work.impl.WorkManagerInitializer"/>
+        <provider android:authorities="com.google.android.apps.classroom.provider" android:exported="false" android:name="com.google.android.apps.classroom.provider.LunchboxProvider"/>
+        <meta-data android:name="com.google.android.gms.phenotype.registration.xml:com.google.android.apps.classroom" android:resource="@xml/com_google_android_apps_classroom_phenotype"/>
+        <service android:enabled="false" android:exported="false" android:name="com.google.android.libraries.phenotype.registration.PhenotypeMetadataHolderService" android:process="">
+            <intent-filter>
+                <action android:name="com.google.android.libraries.phenotype.registration.PhenotypeMetadataHolderService"/>
+            </intent-filter>
+            <meta-data android:name="com.google.android.gms.phenotype.registration.binarypb:com.google.android.apps.classroom" android:resource="@raw/com_google_android_apps_classroom_registration_info"/>
+            <meta-data android:name="com.google.android.gms.phenotype.registration.binarypb:com.google.android.libraries.onegoogle" android:resource="@raw/com_google_android_libraries_onegoogle_registration_info"/>
+            <meta-data android:name="com.google.android.gms.phenotype.registration.binarypb:com.google.android.libraries.performance.primes" android:resource="@raw/com_google_android_libraries_performance_primes_registration_info"/>
+            <meta-data android:name="com.google.android.gms.phenotype.registration.binarypb:com.google.apps.projector.android" android:resource="@raw/com_google_apps_projector_android_registration_info"/>
+            <meta-data android:name="com.google.android.gms.phenotype.registration.binarypb:com.google.android.libraries.surveys" android:resource="@raw/com_google_android_libraries_surveys_registration_info"/>
+        </service>
+        <meta-data android:name="com.google.android.gms.phenotype.registration.xml:com.google.android.libraries.onegoogle" android:resource="@xml/com_google_android_libraries_onegoogle_phenotype"/>
+        <meta-data android:name="com.google.android.gms.phenotype.registration.xml:com.google.android.libraries.performance.primes" android:resource="@xml/com_google_android_libraries_performance_primes_phenotype"/>
+        <meta-data android:name="com.google.android.gms.phenotype.registration.xml:com.google.apps.projector.android" android:resource="@xml/com_google_apps_projector_android_phenotype"/>
+        <meta-data android:name="com.google.android.gms.phenotype.registration.xml:com.google.android.libraries.surveys" android:resource="@xml/com_google_android_libraries_surveys_phenotype"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.abuse.AbuseCourseErrorActivity" android:parentActivityName="com.google.android.apps.classroom.courses.CoursesActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:label="@string/application_settings_label" android:name="com.google.android.apps.classroom.appsettings.AppSettingsActivity" android:theme="@style/AppSettingsTheme"/>
+        <activity android:exported="false" android:label="@string/class_comments_title" android:name="com.google.android.apps.classroom.classcomments.ClassCommentsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground.DialogWhenLarge" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.coursedetails.classwork.topicfilter.ClassworkTopicFilterActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.coursedetails.CourseDetailsActivity" android:parentActivityName="com.google.android.apps.classroom.courses.CoursesActivity" android:theme="@style/CourseDetailsActivity.MaterialTheme"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.coursedetails.courseoverview.CourseOverviewActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.coursedetails.invite.InviteActivity" android:theme="@style/LunchboxMaterialThemeDev.WhiteBackground.DialogWhenLarge"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.courses.CoursesActivity" android:theme="@style/LunchboxMaterialTheme.NavDrawer"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.courses.CourseNamingActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground.DialogWhenLarge" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.courses.JoinCourseActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground.DialogWhenLarge" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.courses.JoinCourseByLinkActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.google.android.apps.classroom.fileannotations.AnnotationsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <provider android:authorities="com.google.android.apps.classroom.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_provider_paths"/>
+        </provider>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.guardian.InteractGuardiansActivity" android:theme="@style/LunchboxMaterialThemeDev.WhiteBackground"/>
+        <activity android:exported="false" android:label="@string/email_student_profile_activity_title" android:name="com.google.android.apps.classroom.guardian.EmailStudentProfileActivity" android:theme="@style/LunchboxMaterialThemeDev.WhiteBackground.DialogWhenLarge" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:label="@string/notifications" android:name="com.google.android.apps.classroom.notification.inapp.InAppNotificationsActivity" android:theme="@style/LunchboxMaterialTheme.NavDrawer"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.personalization.SelectAssignedStudentsActivity" android:theme="@style/LunchboxMaterialThemeDev.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.personalization.AssignedStudentsActivity" android:theme="@style/LunchboxMaterialThemeDev.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.rubrics.RubricCriterionDetailsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.rubrics.RubricOverviewActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.selectcourses.SelectCoursesActivity" android:theme="@style/LunchboxMaterialThemeDev.WhiteBackground.DialogWhenLarge"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.selectgradecategory.SelectGradeCategoryActivity" android:parentActivityName="com.google.android.apps.classroom.writestreamitem.WriteStreamItemActivity" android:theme="@style/DefaultTheme.WhiteBackground.DialogWhenLarge"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.selecttopics.SelectTopicsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground.DialogWhenLarge"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.setup.SplashScreenActivity" android:theme="@style/Theme.Setup.SplashScreen"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.setup.SetupActivity" android:theme="@style/Theme.Setup.TranslucentStatus"/>
+        <activity android:autoRemoveFromRecents="true" android:documentLaunchMode="intoExisting" android:exported="true" android:name="com.google.android.apps.classroom.shareintent.ShareIntentActivity" android:theme="@style/DefaultTheme.WhiteBackground">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+                <data android:mimeType="image/*"/>
+                <data android:mimeType="video/*"/>
+                <data android:mimeType="application/pdf"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.shareintent.ShareIntentSelectStreamItemActivity" android:theme="@style/DefaultTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.streamitemdetails.StreamItemDetailsActivity" android:parentActivityName="com.google.android.apps.classroom.coursedetails.CourseDetailsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground" android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.streamitemdetails.SubmissionPublicCommentsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground.DialogWhenLarge" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.streamitemdetails.SubmissionSummaryActivity" android:parentActivityName="com.google.android.apps.classroom.streamitemdetails.StreamItemDetailsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.streamitemdetails.SubmissionGradingActivity" android:parentActivityName="com.google.android.apps.classroom.streamitemdetails.StreamItemDetailsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.studentprofile.FilteredStudentProfileActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.studentprofile.StudentProfileActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.submissionhistory.SubmissionHistoryActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground.DialogWhenLarge" android:windowSoftInputMode="adjustResize"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.tasklist.TaskListActivity" android:parentActivityName="com.google.android.apps.classroom.courses.CoursesActivity" android:theme="@style/DefaultTheme.NavDrawer"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.todo.TodoPageActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:label="@string/flashcards_title" android:name="com.google.android.apps.classroom.toolbox.flashcards.FlashcardsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:label="@string/student_selector_title" android:name="com.google.android.apps.classroom.toolbox.studentselector.StudentSelectorActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:label="@string/selected_students_activity_title" android:name="com.google.android.apps.classroom.toolbox.studentselector.SelectedStudentsActivity" android:theme="@style/LunchboxMaterialTheme"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.turnin.TurnInActivity"/>
+        <activity-alias android:exported="true" android:icon="@mipmap/product_logo_classroom_launcher_color_48" android:label="@string/share_button_app_name" android:name="com.google.android.apps.classroom.turnin.TurnInActivityAlias" android:targetActivity="com.google.android.apps.classroom.turnin.TurnInActivity">
+            <intent-filter>
+                <action android:name="com.google.android.apps.docs.editors.sheets.ADDON"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.apps.docs.editors.docs.ADDON"/>
+            </intent-filter>
+        </activity-alias>
+        <activity android:exported="true" android:name="com.google.android.apps.classroom.urlredirect.UrlRedirectActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="www.classroom.google.com" android:scheme="https"/>
+                <data android:pathPattern="/h"/>
+                <data android:pathPattern="/h/"/>
+                <data android:pathPattern="/a/..*"/>
+                <data android:pathPattern="/c/..*"/>
+                <data android:pathPattern="/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/o/..*"/>
+                <data android:pathPattern="/r/..*"/>
+                <data android:pathPattern="/u/..*/h"/>
+                <data android:pathPattern="/u/..*/h/"/>
+                <data android:pathPattern="/u/..*/a/..*"/>
+                <data android:pathPattern="/u/..*/c/..*"/>
+                <data android:pathPattern="/u/..*/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/u/..*/o/..*"/>
+                <data android:pathPattern="/u/..*/r/..*"/>
+                <data android:pathPattern="/u/..*/w/..*"/>
+                <data android:pathPattern="/u/..*/w/..*/t/..*"/>
+                <data android:pathPattern="/w/..*"/>
+                <data android:pathPattern="/w/..*/t/..*"/>
+                <data android:pathPattern="/invite/accept/..*"/>
+                <data android:pathPattern="/invite/accept_token/..*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="www.classroom.google.com" android:scheme="http"/>
+                <data android:pathPattern="/h"/>
+                <data android:pathPattern="/h/"/>
+                <data android:pathPattern="/a/..*"/>
+                <data android:pathPattern="/c/..*"/>
+                <data android:pathPattern="/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/o/..*"/>
+                <data android:pathPattern="/r/..*"/>
+                <data android:pathPattern="/u/..*/h"/>
+                <data android:pathPattern="/u/..*/h/"/>
+                <data android:pathPattern="/u/..*/a/..*"/>
+                <data android:pathPattern="/u/..*/c/..*"/>
+                <data android:pathPattern="/u/..*/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/u/..*/o/..*"/>
+                <data android:pathPattern="/u/..*/r/..*"/>
+                <data android:pathPattern="/u/..*/w/..*"/>
+                <data android:pathPattern="/u/..*/w/..*/t/..*"/>
+                <data android:pathPattern="/w/..*"/>
+                <data android:pathPattern="/w/..*/t/..*"/>
+                <data android:pathPattern="/invite/accept/..*"/>
+                <data android:pathPattern="/invite/accept_token/..*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="classroom.google.com" android:scheme="https"/>
+                <data android:pathPattern="/h"/>
+                <data android:pathPattern="/h/"/>
+                <data android:pathPattern="/a/..*"/>
+                <data android:pathPattern="/c/..*"/>
+                <data android:pathPattern="/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/o/..*"/>
+                <data android:pathPattern="/r/..*"/>
+                <data android:pathPattern="/u/..*/h"/>
+                <data android:pathPattern="/u/..*/h/"/>
+                <data android:pathPattern="/u/..*/a/..*"/>
+                <data android:pathPattern="/u/..*/c/..*"/>
+                <data android:pathPattern="/u/..*/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/u/..*/o/..*"/>
+                <data android:pathPattern="/u/..*/r/..*"/>
+                <data android:pathPattern="/u/..*/w/..*"/>
+                <data android:pathPattern="/u/..*/w/..*/t/..*"/>
+                <data android:pathPattern="/w/..*"/>
+                <data android:pathPattern="/w/..*/t/..*"/>
+                <data android:pathPattern="/invite/accept/..*"/>
+                <data android:pathPattern="/invite/accept_token/..*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="classroom.google.com" android:scheme="http"/>
+                <data android:pathPattern="/h"/>
+                <data android:pathPattern="/h/"/>
+                <data android:pathPattern="/a/..*"/>
+                <data android:pathPattern="/c/..*"/>
+                <data android:pathPattern="/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/o/..*"/>
+                <data android:pathPattern="/r/..*"/>
+                <data android:pathPattern="/u/..*/h"/>
+                <data android:pathPattern="/u/..*/h/"/>
+                <data android:pathPattern="/u/..*/a/..*"/>
+                <data android:pathPattern="/u/..*/c/..*"/>
+                <data android:pathPattern="/u/..*/c/..*/sp/..*/..*"/>
+                <data android:pathPattern="/u/..*/o/..*"/>
+                <data android:pathPattern="/u/..*/r/..*"/>
+                <data android:pathPattern="/u/..*/w/..*"/>
+                <data android:pathPattern="/u/..*/w/..*/t/..*"/>
+                <data android:pathPattern="/w/..*"/>
+                <data android:pathPattern="/w/..*/t/..*"/>
+                <data android:pathPattern="/invite/accept/..*"/>
+                <data android:pathPattern="/invite/accept_token/..*"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.writestreamitem.draftpost.DraftStreamItemListActivity" android:parentActivityName="com.google.android.apps.classroom.coursedetails.CourseDetailsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground.DraftList"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.writestreamitem.reusepost.ReusePostCourseListActivity" android:parentActivityName="com.google.android.apps.classroom.coursedetails.CourseDetailsActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.writestreamitem.reusepost.ReusePostStreamItemListActivity" android:parentActivityName="com.google.android.apps.classroom.writestreamitem.reusepost.ReusePostCourseListActivity" android:theme="@style/LunchboxMaterialTheme.WhiteBackground"/>
+        <activity android:exported="false" android:name="com.google.android.apps.classroom.writestreamitem.WriteStreamItemActivity" android:parentActivityName="com.google.android.apps.classroom.coursedetails.CourseDetailsActivity" android:theme="@style/LunchboxMaterialThemeDev.WhiteBackground.DialogWhenLarge" android:windowSoftInputMode="adjustResize"/>
+        <service android:exported="false" android:foregroundServiceType="mediaPlayback" android:name="com.google.android.apps.viewer.viewer.audio.AudioService" android:stopWithTask="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+        </service>
+        <receiver android:exported="true" android:name="androidx.media.session.MediaButtonReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:exported="true" android:label="ReportAbuseActivity" android:name="com.google.android.libraries.abuse.reporting.ReportAbuseActivity"/>
+        <meta-data android:name="com.google.android.libraries.glide.fife.module.FifeGlideModule" android:value="GlideModule"/>
+        <receiver android:exported="true" android:name="com.google.android.libraries.internal.growth.growthkit.inject.GrowthKitBootCompletedBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.internal.growth.growthkit.internal.debug.TestingToolsBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.libraries.internal.growth.growthkit.ADD_PROMO"/>
+                <action android:name="com.google.android.libraries.internal.growth.growthkit.ADD_PREVIEW_PROMO"/>
+                <action android:name="com.google.android.libraries.internal.growth.growthkit.LOG_DEBUG_DATA"/>
+                <action android:name="com.google.android.libraries.internal.growth.growthkit.SYNC"/>
+                <action android:name="com.google.android.libraries.internal.growth.growthkit.CLEAR_COUNTERS"/>
+                <action android:name="com.google.android.libraries.internal.growth.growthkit.FETCH_PROMOTIONS"/>
+                <action android:name="com.google.android.libraries.internal.growth.growthkit.FETCH_EVAL_RESULTS"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.internal.growth.growthkit.internal.experiments.impl.PhenotypeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.gms.phenotype.UPDATE"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.google.android.libraries.internal.growth.growthkit.internal.jobs.impl.GrowthKitJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.google.android.libraries.internal.growth.growthkit.internal.jobs.impl.GrowthKitBelowLollipopJobService"/>
+        <receiver android:exported="true" android:name="com.google.android.libraries.notifications.entrypoints.accountchanged.AccountChangedReceiver">
+            <intent-filter>
+                <action android:name="android.accounts.LOGIN_ACCOUNTS_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.notifications.entrypoints.blockstatechanged.BlockStateChangedReceiver">
+            <intent-filter>
+                <action android:name="android.app.action.APP_BLOCK_STATE_CHANGED"/>
+                <action android:name="android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED"/>
+                <action android:name="android.app.action.NOTIFICATION_CHANNEL_GROUP_BLOCK_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.notifications.entrypoints.gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter android:priority="99">
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.notifications.entrypoints.localechanged.LocaleChangedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.notifications.entrypoints.phenotype.PhenotypeUpdateReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.gms.phenotype.UPDATE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.notifications.entrypoints.restart.RestartReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.google.android.libraries.notifications.entrypoints.scheduled.ScheduledTaskService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:exported="false" android:name="com.google.android.libraries.notifications.entrypoints.systemtray.SystemTrayBroadcastReceiver"/>
+        <activity android:exported="false" android:name="com.google.android.libraries.notifications.entrypoints.systemtray.SystemTrayActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <receiver android:exported="true" android:name="com.google.android.libraries.notifications.entrypoints.timezonechanged.TimezoneChangedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.google.android.libraries.notifications.executor.impl.basic.ChimeExecutorApiService"/>
+        <activity android:exported="false" android:name="com.google.android.libraries.onegoogle.accountmenu.accountlayer.AddAccountActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <receiver android:exported="false" android:name="com.google.android.libraries.performance.primes.transmitter.LifeboatReceiver" android:process=":primes_lifeboat"/>
+        <receiver android:exported="true" android:name="com.google.android.libraries.phenotype.client.stable.AccountRemovedBroadcastReceiver" android:process="">
+            <intent-filter>
+                <action android:name="android.accounts.action.ACCOUNT_REMOVED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.libraries.phenotype.client.stable.PhenotypeUpdateBackgroundBroadcastReceiver" android:permission="com.google.android.gms.permission.PHENOTYPE_UPDATE_BROADCAST" android:process="">
+            <intent-filter>
+                <action android:name="com.google.android.gms.phenotype.UPDATE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="true" android:label="@string/preferences_license_title" android:name="com.google.android.libraries.social.licenses.LicenseMenuActivity" android:theme="@style/Theme.AppCompat.DayNight"/>
+        <activity android:exported="false" android:label="@string/preferences_license_title" android:name="com.google.android.libraries.social.licenses.LicenseActivity" android:theme="@style/Theme.AppCompat.DayNight"/>
+        <receiver android:exported="false" android:name="com.google.android.libraries.social.silentfeedback.nobinder.ConnectionlessSilentFeedbackReceiver" android:process=":crash_report"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTop" android:name="com.google.android.libraries.surveys.internal.view.SurveyActivity" android:process="@string/survey_activity_process_name" android:theme="@style/SurveysTransparentActivity" android:windowSoftInputMode="adjustResize"/>
+        <service android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <receiver android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.google.android.apps.classroom.lifecycle-process" android:exported="false" android:multiprocess="true" android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_foreground_service_default" android:exported="false" android:name="androidx.work.impl.foreground.SystemForegroundService"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="false" android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"/>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW"/>
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver" android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

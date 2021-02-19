@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.netacad.PacketTracerM" platformBuildVersionCode="20" platformBuildVersionName="4.4W.2-1537038">
+    <application android:clearTaskOnLaunch="true" android:icon="@drawable/icon" android:label="@string/app_name" android:largeHeap="true" android:name="org.qtproject.qt5.android.bindings.QtApplication">
+        <activity android:configChanges="fontScale|keyboard|keyboardHidden|layoutDirection|locale|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:finishOnTaskLaunch="false" android:hardwareAccelerated="true" android:label="@string/app_name" android:launchMode="singleTask" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:noHistory="false" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/octet-stream" android:pathPattern=".*\\.pka" android:scheme="content"/>
+                <data android:mimeType="application/octet-stream" android:pathPattern=".*\\.pkt" android:scheme="content"/>
+                <data android:mimeType="application/octet-stream" android:pathPattern=".*\\.pkz" android:scheme="content"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="*/*" android:pathPattern=".*\\.pka" android:scheme="file"/>
+                <data android:mimeType="*/*" android:pathPattern=".*\\.pkt" android:scheme="file"/>
+                <data android:mimeType="*/*" android:pathPattern=".*\\.pkz" android:scheme="file"/>
+            </intent-filter>
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+            <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
+            <meta-data android:name="android.app.repository" android:value="default"/>
+            <meta-data android:name="android.app.qt_libs_resource_id" android:resource="@array/qt_libs"/>
+            <meta-data android:name="android.app.bundled_libs_resource_id" android:resource="@array/bundled_libs"/>
+            <meta-data android:name="android.app.bundle_local_qt_libs" android:value="1"/>
+            <meta-data android:name="android.app.bundled_in_lib_resource_id" android:resource="@array/bundled_in_lib"/>
+            <meta-data android:name="android.app.bundled_in_assets_resource_id" android:resource="@array/bundled_in_assets"/>
+            <meta-data android:name="android.app.use_local_qt_libs" android:value="1"/>
+            <meta-data android:name="android.app.libs_prefix" android:value="/data/local/tmp/qt/"/>
+            <meta-data android:name="android.app.load_local_libs" android:value="plugins/platforms/android/libqtforandroid.so:plugins/bearer/libqandroidbearer.so"/>
+            <meta-data android:name="android.app.load_local_jars" android:value="jar/QtAndroid.jar:jar/QtAndroidAccessibility.jar:jar/QtAndroid-bundled.jar:jar/QtAndroidAccessibility-bundled.jar:jar/QtAndroidBearer.jar:jar/QtAndroidBearer-bundled.jar"/>
+            <meta-data android:name="android.app.static_init_classes" android:value=""/>
+            <meta-data android:name="android.app.ministro_not_found_msg" android:value="@string/ministro_not_found_msg"/>
+            <meta-data android:name="android.app.ministro_needed_msg" android:value="@string/ministro_needed_msg"/>
+            <meta-data android:name="android.app.fatal_error_msg" android:value="@string/fatal_error_msg"/>
+            <meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/splash"/>
+        </activity>
+        <activity android:label="@string/app_name" android:name="org.qtproject.qt5.android.bindings.BoxApiClient">
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+        </activity>
+        <activity android:label="@string/app_name" android:name="org.qtproject.qt5.android.bindings.TwitterClient">
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="callback" android:scheme="oauth"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/app_name" android:name="com.box.boxandroidlibv2.activities.OAuthActivity">
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+        </activity>
+        <activity android:label="@string/app_name" android:name="org.qtproject.qt5.android.bindings.DropBoxApiClient">
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+        </activity>
+        <activity android:configChanges="keyboard|orientation" android:label="@string/app_name" android:launchMode="singleTask" android:name="com.dropbox.client2.android.AuthActivity">
+            <intent-filter>
+                <data android:scheme="db-46ojolbsuwqtxto"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+        </activity>
+        <activity android:label="@string/app_name" android:name="com.facebook.LoginActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+        </activity>
+        <activity android:excludeFromRecents="true" android:finishOnTaskLaunch="true" android:label="@string/app_name" android:launchMode="singleInstance" android:name="org.acra.CrashReportDialog" android:theme="@android:style/Theme.Dialog">
+            <meta-data android:name="android.app.lib_name" android:value="PacketTracer"/>
+        </activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+        <provider android:authorities="jsHybugger.org" android:enabled="true" android:exported="false" android:name="org.jshybugger.DebugContentProvider">
+            <meta-data android:name="debugPort" android:value="8888"/>
+            <meta-data android:name="proxyPort" android:value="8080"/>
+            <meta-data android:name="proxyEnabled" android:value="false"/>
+            <meta-data android:name="upstreamProxyEnabled" android:value="false"/>
+            <meta-data android:name="upstreamProxyPort" android:value="8080"/>
+            <meta-data android:name="upstreamProxyHost" android:value="192.168.0.1"/>
+            <meta-data android:name="excludePattern" android:value="(\\.min\\.js|sencha)"/>
+            <meta-data android:name="excludeHosts" android:value="*.google.com,*.twitter.com"/>
+        </provider>
+    </application>
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+</manifest>
